@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding-right: 0px !important;
+  overflow-x: hidden;
+}
+#app {
+  height: 100%;
+  width: 100%;
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+
+body::-webkit-scrollbar-thumb {
+  display: none; /* Chrome Safari */
+}

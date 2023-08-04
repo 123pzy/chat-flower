@@ -8,6 +8,11 @@ import "element-plus/theme-chalk/el-message.css";
 import "element-plus/theme-chalk/el-notification.css";
 import "element-plus/theme-chalk/el-message-box.css";
 import "element-plus/theme-chalk/el-drawer.css";
+// markdown样式
+import '../node_modules/github-markdown-css/github-markdown-light.css'
+// 代码高亮
+import '../node_modules/highlight.js/styles/github.css'
+
 
 const app = createApp(App);
 app.use(router);

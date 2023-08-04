@@ -1,7 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick, watch, onMounted } from 'vue';
 import { useChat } from '../stores/chat';
-import '/node_modules/github-markdown-css/github-markdown-light.css';
 
 const chat = useChat();
 // css样式
@@ -13,26 +12,43 @@ const imgUrl =
     ? ` /api/profile/getimg/${token}`
     : `/profile/getimg/${token}`;
 
-// let contentBox = ref(null);
-// const props = defineProps(["chatContext"]);
-// // 实现打字回复效果的动态位置调整
-// await nextTick();
-// let height = ref(0);
-// watch(
-//   () => chat.htmlBefore,
-//   () => {
-//     height.value = 0;
-//     for (var i = 0; i <= contentBox.value.length - 1; i++) {
-//       height.value += contentBox.value[i].offsetHeight;
-//     }
-//     if (height.value >= props.chatContext.offsetHeight) {
-//       props.chatContext.scrollTo({
-//         top: height.value - props.chatContext.offsetHeight + 100,
-//         behavior: "smooth",
-//       });
-//     }
-//   }
-// );
+const props = defineProps(['chatContext']);
+// 实现打字回复效果的动态位置调整
+await nextTick();
+watch(
+  () => chat.htmlBefore,
+  () => {
+    if (
+      props.chatContext.scrollTop + props.chatContext.clientHeight >=
+      props.chatContext.scrollHeight - 100
+    ) {
+      props.chatContext.scrollTo({
+        top: props.chatContext.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  },
+  {
+    immediate: true,
+  }
+);
+watch(
+  () => chat.messages.length,
+  () => {
+    props.chatContext.scrollTo({
+      top: props.chatContext.scrollHeight,
+      behavior: 'smooth',
+    });
+  }
+);
+// onMounted(() => {
+//   const link = document.createElement('link');
+//   link.type = 'text/css';
+//   link.rel = 'stylesheet';
+//   link.href =
+//     'https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css';
+//   document.head.appendChild(link);
+// });
 </script>
 
 <template>
@@ -40,7 +56,6 @@ const imgUrl =
     class="chat_container"
     v-for="(msg, index) in chat.messages"
     :key="index"
-    ref="contentBox"
   >
     <div class="answer_container" v-if="msg.role == 'assistant'">
       <img src="../assets/chatPGT.jpg" />
@@ -93,7 +108,7 @@ $contentMarginTop: 25px;
     border-left: 10px solid #dfe4ea;
     position: relative;
     // 控制伪元素的位置：
-    left: 20px;
+    left: 19px;
     top: 0px;
   }
   img {

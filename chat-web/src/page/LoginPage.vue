@@ -151,7 +151,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <template>
   <div class="container">
-    <h1 class="title">Chat万花筒</h1>
+    <div class="title">
+      <h1>Chat万花筒</h1>
+      <span class="title-span">一个可以让你免费使用ChatGPT的网站</span>
+    </div>
+
     <img src="../assets/icon/登陆注册页图片.svg" alt="" />
     <!-- 注册 -->
     <div class="register_container" v-if="already">
@@ -162,7 +166,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
         status-icon
         :rules="rules"
         label-width="auto"
-        class="demo-ruleForm"
       >
         <el-form-item label="用户名" prop="name">
           <el-input
@@ -228,7 +231,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
         status-icon
         :rules="rules"
         label-width="auto"
-        class="demo-ruleForm"
       >
         <el-form-item label="用户名" prop="name">
           <el-input
@@ -288,7 +290,17 @@ $font-color: v-bind(fontColor);
     position: absolute;
     top: 8vh;
     color: $font-color;
-    font-size: 2.8em;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 400px;
+    .title-span {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #21bfca;
+      font-size: 0.8em;
+    }
   }
   // 登录注册框
   .register_container,

@@ -62,15 +62,6 @@ export const judgmentIsLogin = (data) => {
   });
 };
 
-// chat
-// export const chatGPT = (data) => {
-//   return instance({
-//     method: "POST",
-//     url: path + "/chat",
-//     data,
-//   })
-// }
-
 // 上传个人token
 export function UseYourToken(token) {
   return instance({
@@ -128,7 +119,6 @@ export function setUsersFuncBoard(data) {
 
 // 删除func
 export function deleteUsersFuncBoard(data) {
-  console.log("id:", data);
   return instance({
     method: "DELETE",
     url: path + `/profile/deleteFuncBoard/${JSON.stringify(data)}`,

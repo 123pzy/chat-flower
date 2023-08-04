@@ -17,7 +17,7 @@ const { bgColor, fontColor } = storeToRefs(style);
         class="icon_cat"
         @click="$router.push('/')"
       />
-      <h2 class="title" @click="$router.push('/')">Chat万花筒</h2>
+      <h1 class="title" @click="$router.push('/')">Chat万花筒</h1>
     </div>
     <Suspense><NavBarButton></NavBarButton></Suspense>
   </div>
@@ -38,18 +38,18 @@ $bgColor: v-bind(bgColor);
 .icon_box {
   display: flex;
   align-items: center;
-  flex-basis: 23vw;
+  flex-basis: 30vw;
   justify-content: flex-start;
   padding-left: 1vw;
   .title {
     color: $font-color;
-    font-size: 1.7vw;
-    margin-left: 1vw;
+    font-size: 1.8vw;
+    margin-left: 0.6vw;
   }
 }
 .icon_cat {
-  height: 5vw;
-  width: 5vw;
+  height: 4vw;
+  width: 4vw;
   min-width: 40px;
   min-height: 40px;
   max-width: 80px;
